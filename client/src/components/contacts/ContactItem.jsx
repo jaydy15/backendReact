@@ -1,14 +1,19 @@
 import React, { useContext } from 'react';
 import { PropTypes } from 'prop-types';
 import ContactContext from '../../context/contact/contactContext';
+import { set } from 'mongoose';
 
 const ContactItem = ({ contact }) => {
   const contactContext = useContext(ContactContext);
-  const { deleteContact } = contactContext;
+  const { deleteContact, setCurrent } = contactContext;
   const { name, id, email, phone, type } = contact;
 
   const onDelete = () => {
     deleteContact(id);
+  };
+
+  const onDisplay = (contact) => {
+    setCurrent(contact);
   };
 
   return (
@@ -37,7 +42,11 @@ const ContactItem = ({ contact }) => {
         )}
       </ul>
       <p>
-        <button className='btn btn-sm btn-dark'>Edit</button>
+        <button
+          className='btn btn-sm btn-dark'
+          onClick={() => setCurrent(contact)}>
+          Edit
+        </button>
         <button className='btn btn-sm btn-danger' onClick={onDelete}>
           Delete
         </button>
