@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { PropTypes } from 'prop-types';
 import ContactContext from '../../context/contact/contactContext';
-import { set } from 'mongoose';
 
 const ContactItem = ({ contact }) => {
   const contactContext = useContext(ContactContext);
@@ -11,10 +10,6 @@ const ContactItem = ({ contact }) => {
   const onDelete = () => {
     deleteContact(id);
     clearCurrent();
-  };
-
-  const onDisplay = (contact) => {
-    setCurrent(contact);
   };
 
   return (
