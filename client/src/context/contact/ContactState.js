@@ -17,15 +17,15 @@ const ContactState = (props) => {
     contacts: [
       {
         id: 1,
-        name: 'j1',
-        email: 'j1@qbee.com',
+        name: 'Ervin Howell',
+        email: 'Shanna@melissa.tv',
         phone: '1111-222-3333',
         type: 'personal',
       },
       {
         id: 2,
-        name: 'j2',
-        email: 'j2@qbee.com',
+        name: 'Leanne Graham',
+        email: 'Sincere@april.biz',
         phone: '1111-222-3333',
         type: 'personal',
       },
@@ -38,6 +38,7 @@ const ContactState = (props) => {
       },
     ],
     current: null,
+    filtered: null,
   };
   const [state, dispatch] = useReducer(contactReducer, initialState);
 
@@ -67,19 +68,27 @@ const ContactState = (props) => {
     dispatch({ type: UPDATE_CONTACT, payload: contact });
   };
   //filter contact
-
+  const filterContacts = (text) => {
+    dispatch({ type: FILTER_CONTACTS, payload: text });
+  };
   //clear filter contact
+  const clearFilter = () => {
+    dispatch({ type: CLEAR_FILTER });
+  };
 
   return (
     <ContactContext.Provider
       value={{
         contacts: state.contacts,
         current: state.current,
+        filtered: state.filtered,
         addContact,
         deleteContact,
         setCurrent,
         clearCurrent,
         updateContact,
+        filterContacts,
+        clearFilter,
       }}>
       {props.children}
     </ContactContext.Provider>
