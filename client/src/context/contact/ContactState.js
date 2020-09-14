@@ -70,13 +70,13 @@ const ContactState = (props) => {
 
     try {
       const res = await axios.put(
-        `/api/contacts/contacts._id`,
+        `/api/contacts/${contact._id}`,
         contact,
         config
       );
       dispatch({ type: UPDATE_CONTACT, payload: res.data });
-    } catch (err) {
-      dispatch({ type: CONTACT_ERROR, payload: err.response.msg });
+    } catch (error) {
+      dispatch({ type: CONTACT_ERROR, payload: error.response.msg });
     }
   };
 
